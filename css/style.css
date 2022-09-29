@@ -1,0 +1,42 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.title{
+    text-align: center;
+    background: linear-gradient(to left, #A9ECCF, #65FBBA);
+    padding: 10px;
+}
+
+.title h1{
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.subtitle{
+    text-align: center;
+    font-size: 19px;
+}
+
+.menu{
+    display: flex;
+}
+
+.cont{
+    margin-top: 56px;
+    margin-left: 11%;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.cont .subtitle{
+    background-color: orange;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+img{
+    width: 240px;
+    height: 254px;
+}
