@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js"></script>
+    <title>Restaurante</title>
+</head>
+<body>
+
+    <div class="factura">
+    </div>
+
+    <div class="title">
+        <h1>Bienvenidos al Restaurante Chamba</h1>
+    </div>
+    <div class="subtitle"> <h2>Combos</h2> </div>
+    <div class="menu">        
+        <div class="cont">
+            <div class="subtitle"> Super Combo </div>
+            <img src="img/supercombo.png" alt="Imagen del super combo">
+        </div>
+
+        <div class="cont">
+            <div class="subtitle"> Combo Personal </div>
+            <img src="img/personal.png" alt="Imagen del super combo">
+        </div>
+
+        <div class="cont">
+            <div class="subtitle"> Combo infantil </div>
+            <img src="img/infantil.png" alt="Imagen del super combo">
+        </div>
+    </div>
+
+    <div class="form">
+        <form action="#">
+            <fieldset>
+                <legend>¡Ordene su pedido aquí!</legend>
+
+                <p class="campo">Seleccione su combo: </p><select name="combos" id="combos">
+                    <option value="super">SuperCombo</option>
+                    <option value="personal" selected>Combo Personal</option>
+                    <option value="infantil">Combo Infantil</option>
+                </select>
+
+                <p class="campo">¿Desea agregar algo más? </p>
+                <input type="checkbox" class="acom" value="Ensalada" id="Ensalada" onchange=" ensalada()">Ensalada cantidad: <input type="number" id="ensaladaCant" disabled> <br>
+                <input type="checkbox" class="acom" value="Papas" id="Papas">Papas cantidad: <input type="number" id="papasCant" disabled><br>
+                <input type="checkbox" class="acom" value="Bebida" id="Bebida">Bebida <br> tipo: <br> <input type="radio" disabled name="tipoBebida" value="Grande">Grande <br> <input disabled value="Mediana" type="radio" name="tipoBebida">Mediana <br> <input disabled value="Peque" type="radio" name="tipoBebida">Pequeña <br> cantidad: <input type="number" id="BebidasCant" disabled><br>
+                <input type="checkbox" class="acom" value="pieza" id="pieza">Piezas de pollo <br> tipo: <br> <input type="radio" disabled name="tipoPieza" value="Grande">Grande <br> <input disabled value="Mediana" type="radio" name="tipoPieza">Mediana <br> <input disabled value="Peque" type="radio" name="tipoPieza">Pequeña <br> cantidad: <input type="number" id="PiezaCant" disabled><br>
+                <input type="checkbox" class="acom" value="Cafe" id="Café">Café cantidad: <input type="number" id="CafeCant" disabled><br>
+                <input type="checkbox" class="acom" value="Postre" id="Postre">Postre cantidad: <input type="number" id="PostreCant" disabled><br>
+                Total: <input type="number" id="total" value="0.00" readonly>
+                <br><input type="submit" value="Ordenar" id="ordenar">
+            </fieldset>
+        </form>
+    </div>
+</body>
+</html>
