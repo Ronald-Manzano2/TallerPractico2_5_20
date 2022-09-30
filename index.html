@@ -63,25 +63,54 @@
 
     <div class="form">
         <form action="#">
-            <fieldset>
+             <fieldset>
                 <legend>¡Ordene su pedido aquí!</legend>
 
-                <p class="campo">Seleccione su combo: </p><select name="combos" id="combos">
-                    <option value="super">SuperCombo</option>
+                <label for="combos">Seleccione su combo: </label><select name="combos" id="combos">
+                    <option value="super" >SuperCombo</option>
                     <option value="personal" selected>Combo Personal</option>
                     <option value="infantil">Combo Infantil</option>
                 </select>
 
-                <p class="campo">¿Desea agregar algo más? </p>
-                <input type="checkbox" class="acom" value="Ensalada" id="Ensalada" onchange=" ensalada()">Ensalada cantidad: <input type="number" id="ensaladaCant" disabled> <br>
-                <input type="checkbox" class="acom" value="Papas" id="Papas">Papas cantidad: <input type="number" id="papasCant" disabled><br>
-                <input type="checkbox" class="acom" value="Bebida" id="Bebida">Bebida <br> tipo: <br> <input type="radio" disabled name="tipoBebida" value="Grande">Grande <br> <input disabled value="Mediana" type="radio" name="tipoBebida">Mediana <br> <input disabled value="Peque" type="radio" name="tipoBebida">Pequeña <br> cantidad: <input type="number" id="BebidasCant" disabled><br>
-                <input type="checkbox" class="acom" value="pieza" id="pieza">Piezas de pollo <br> tipo: <br> <input type="radio" disabled name="tipoPieza" value="Grande">Grande <br> <input disabled value="Mediana" type="radio" name="tipoPieza">Mediana <br> <input disabled value="Peque" type="radio" name="tipoPieza">Pequeña <br> cantidad: <input type="number" id="PiezaCant" disabled><br>
-                <input type="checkbox" class="acom" value="Cafe" id="Café">Café cantidad: <input type="number" id="CafeCant" disabled><br>
-                <input type="checkbox" class="acom" value="Postre" id="Postre">Postre cantidad: <input type="number" id="PostreCant" disabled><br>
-                Total: <input type="number" id="total" value="0.00" readonly>
-                <br><input type="submit" value="Ordenar" id="ordenar">
+                <br>
+                <label for="cantCombo">Cantidad de combos que desea llevar</label>
+                <input type="number" id="cantCombo" min="0" max="20" value="0">      
             </fieldset>
+
+            <fieldset>
+                <legend>¿Desea agregar algo más? o ¿Se le antoja un menú personalizado?</legend>
+            <div class="Ensalada">
+                <input type="checkbox" id="salad"><label for="salad">Ensalada </label><label for="cantSalad">Cantidad de recipientes: </label><input type="number" id="cantSalad" disabled>
+            </div>
+
+            <div class="Papas">
+                <input type="checkbox" id="papa"><label for="papa">Papas fritas </label><label for="cantPapas">Cantidad de papas: </label><input type="number" id="cantPapas" disabled>
+            </div>
+
+            <div class="Piezas">
+                <input type="checkbox" id="pieza"><label for="pieza">Piezas de pollo </label> <label>Tamaño: </label><select disabled name="tamañoPollo" id="tamañoPollo"><option value="G">Grande</option><option value="M">Mediana</option><option value="P">Pequeña</option></select> <label for="cantPapas">Cantidad de piezas: </label><input type="number" id="cantPiezas" disabled>
+            </div>
+
+            <div class="Bebidas">
+                <input type="checkbox" id="soda"><label for="soda">Bebida</label> <label>Tamaño: </label><select disabled name="tamañoSoda" id="tamañoSoda"><option value="G">Grande</option><option value="M">Mediana</option><option value="P">Pequeña</option></select> <label for="cantSoda">Cantidad de vasos: </label><input type="number" id="cantSoda" disabled>
+            </div>
+
+            <div class="cafe">
+                <input type="checkbox" id="cofee"><label for="cofee">Café </label><label for="cantCafe">Cantidad de vasos: </label><input type="number" id="cantCafe" disabled>
+            </div>
+
+            <div class="postres">
+                <input type="checkbox" id="postre"><label for="postre">Postres </label><label for="cantPostre">Cantidad de postres: </label><input type="number" id="cantPostre" disabled>
+            </div>
+            </fieldset>
+
+            <div id="total">
+                <label for="total"> Total: </label><input type="text" id="total" value="0.00" readonly>
+            </div>
+
+            <div class="enviar">
+                <br><input type="submit" value="Ordenar" id="ordenar">
+            </div>
         </form>
     </div>
 </body>
