@@ -1,174 +1,176 @@
-var orden = new Object();
-ordenar.combo = function(){
-    var combo = document.getElementById('combos');
-    var texto = combo.options[combo.selectedIndex].value;
-    switch(texto){
-        case "super":
-            combo = 7.25;
-            return combo;
-        case "personal":
-             combo = 5.75;
-             return combo;
-        case "infantil":
-            combo = 3.50;
-            return combo;
-        default:
-            combo = 0;
-            return combo; 
-    }
-}
+window.addEventListener("load",iniciarvariable);
 
-function iniciar(){
-    var ordenar = document.getElementById("ordenar");
-    var combo = document.getElementById('combos');
-    var texto = combo.options[combo.selectedIndex].value;
+function iniciarvariable(){
+    //iniciar las variables de la seccion de combos
+    var combo = document.getElementById("combos");
+    var NumCombo = document.getElementById("cantCombo");
 
-    var ens = document.getElementById("Ensalada");
+    //iniciar las variables de la seccion de otros menus
+    //Ensaladas
+    var ensalada = document.getElementById('salad');
+    var cantSalad = document.getElementById('cantSalad');
+    //Papas
+    var papas = document.getElementById('papa');
+    var cantPapas = document.getElementById('cantPapas');
+    //Piezas de pollo
+    var PiezasPollo = document.getElementById('pieza');
+    var tamaños = document.getElementById('tamañoPollo');
+    var cantPollo = document.getElementById('cantPiezas');
+    //Bebidas
+    var Bebidas = document.getElementById('soda');
+    var tamañosSoda = document.getElementById('tamañoSoda');
+    var cantSoda = document.getElementById('cantSoda');
+    //Café
+    var cafe = document.getElementById('cofee');
+    var cantcafe = document.getElementById('cantCafe');
+    //Postres
+    var postre = document.getElementById('postre');
+    var cantpostre = document.getElementById('cantPostre');
+    //Variable de escritura
+    var imprimir = document.getElementById('total');
 
-    if(ordenar.addEventListener){
-        ordenar.addEventListener("click",mostrar);
+    //Eventos para desbloquear las otras opciones (cantidad y tamaños)
+    //Ensaladas
+    if(ensalada.addEventListener){
+        ensalada.addEventListener("change",function(){
+            cantSalad.disabled = false;
+        })
     }else{
-        if(ordenar.attachEvent){
-            ordenar.attachEvent("onclick",mostrar);
+        if(ensalada.attachtEvent){
+            ensalada.attachtEvent("onchange",function(){
+            cantSalad.disabled = false;
+        })
         }
     }
 
-    if(combo.addEventListener){
-        combo.addEventListener("selectionchange", definirCombo(texto));
+    //Papas fritas
+    if(papas.addEventListener){
+        papas.addEventListener("change",function(){
+            cantPapas.disabled = false;
+        })
     }else{
-        if(combo.attachEvent){
-            combo.attachEvent("onSelectionChange", definirCombo(texto));
+        if(papas.attachtEvent){
+            papas.attachtEvent("onchange",function(){
+            cantPapas.disabled = false;
+        })
+        }
+    }
+    //Piezas de pollo
+    if(PiezasPollo.addEventListener){
+        PiezasPollo.addEventListener("change",function(){
+            cantPiezas.disabled = false;
+            tamaños.disabled = false;
+        })
+    }else{
+        if(PiezasPollo.attachtEvent){
+            cantPiezas.attachtEvent("onchange",function(){
+            cantPiezas.disabled = false;
+            tamaños.disabled = false;
+        })
         }
     }
 
-   if(ens.checked == true){
-    ensalada();
-   }
+    //Bebidas
+    if(Bebidas.addEventListener){
+        Bebidas.addEventListener("change",function(){
+            cantSoda.disabled = false;
+            tamañosSoda.disabled = false;
+        })
+    }else{
+        if(Bebidas.attachtEvent){
+            Bebidas.attachtEvent("onchange",function(){
+            cantSoda.disabled = false;
+            tamañosSoda.disabled = false;
+        })
+        }
+    }
 
+    //Café
+    if(cafe.addEventListener){
+        cafe.addEventListener("change",function(){
+            cantcafe.disabled = false;
+        })
+    }else{
+        if(cafe.attachtEvent){
+            cafe.attachtEvent("onchange",function(){
+            cantcafe.disabled = false;
+        })
+        }
+    }
+
+    //Postres
+    if(postre.addEventListener){
+        postre.addEventListener("change",function(){
+            cantpostre.disabled = false;
+        })
+    }else{
+        if(postre.attachtEvent){
+            postre.attachtEvent("onchange",function(){
+            cantpostre.disabled = false;
+        })
+        }
+    }
+
+    //Funciones para calcular cada total
+    //Combos
+    combos(combo.selectedIndex,parseInt(NumCombo.value));
+
+    //Ensalada
+    salada(cantSalad.value);
+
+    //Papas fritas
+    fritas(cantPapas.value);
+
+    //Envío de datos al objeto
+    var ticket = new Orden();
+    var subtotal = ticket.total(combos,salada,fritas);
+    imprimir.value = subtotal.toLocaleString();
 }
 
-function ensalada(){
-
-    let cant = document.getElementById("ensaladaCant");
-    cant.disabled = false;
-    lettotalEns = cant.value * 1.50;
-
-    return totalEns;
-}
-
-function papas(){
-    let cant = document.getElementById("papasCant");
-    cant.disabled = false;
-    let totalPa = cant.value * 1.25;
-
-    return totalPa;
-}
-
-function definirCombo(text){
-    var combo;
-    switch(text){
-        case "super":
-           alert(text)
-            combo = 7.25;
-            alert(combo);
-            return combo;
-        case "personal":
-             combo = 5.75;
-             return combo;
-        case "infantil":
-            combo = 3.50;
-            return combo;
-        default:
-            combo = 0;
-            return combo; 
+//Funcion del combo
+function combos(combo,cantCombo){
+    var total = 0;
+    if(combo == 0){
+        total = cantCombo*7.25;
+        return total;
+    }else{
+        if(combo == 1){
+            total = cantCombo*5.75;
+            return total;
+        }else{
+            if(combo == 2){
+                total= cantCombo*3.5;
+                return total;
+            }
+        }
     }
 }
 
-function calcularTotal(combo,ensalada,papas,bebida,piezas,cafe,postre){
-
+//Función de la ensalada
+function salada(cantidad){
+    var total = 0;
+    total = cantidad*1.5;
+    return total;
 }
 
-function mostrar(){
-    alert(definirCombo());
+//Funcion de las papas fritas
+ function fritas(cantidad){
+    var total = 0;
+    total = cantidad*1.25;
+    return total;
 }
 
-if(window.addEventListener){
-    window.addEventListener("load",iniciar);
-}else{
-    if(window.attachEvent){
-        window.attachEvent("onload",iniciar);
+
+function Orden(combo,ensalada,papas){
+    this.combo = combo;
+    this.ensalada = ensalada;
+    this.papas = papas;
+    this.totale = combo+ensalada+papas;
+
+    this.total = function(num1,num2,num3){
+        var total = 0;
+        total = num1+num2+num3;
+
+        return total;
     }
 }
-
-//Redondeando el precio a mostrar a dos cifras decimales
-function formatDecimal(val, n) {
-    n = n || 2;
-    var str = "" + Math.round (parseFloat(val) * Math.pow(10, n));
-    while (str.length <= n) {
-    str = "0" + str;
-    }
-    var pt = str.length - n;
-    return str.slice(0,pt) + "." + str.slice(pt);
-    }
-    function getVal(form, name) {
-    var radios = form.elements[name];
-    var val;
-    for (var i=0, len=radios.length; i<len; i++) {
-    if (radios[i].checked == true) {
-    val = radios[i].value;
-    break;
-    }
-    }
-    return val;
-    }
-    
-    //Monto Total
-    function getTotal(e) {
-    var form = this.form;
-    var val = parseFloat(form.elements['tops_tot'].value);
-    if ( this.checked == true ) {
-    val += parseFloat(this.value);
-    } else {
-    val -= parseFloat(this.value);
-    }
-    form.elements['tops_tot'].value = formatDecimal(val);
-    updatePizzaTotal(form);
-    }
-    
-    //Obtiene el subtotal del valor de acuerdo al tamaño
-    
-    function getSizePrice(e) {
-    this.form.elements['sz_tot'].value = parseFloat(this.value);
-    updatePizzaTotal(this.form);
-    }
-    
-    //Calcula el precio total a cancelar por la pizza tomando en cuenta
-    //los subtotales de acuerdo al tamaño y a los ingredientes seleccionados
-    
-    function updateTotal(form) {
-    var sz_tot = parseFloat(form.elements['sz_tot'].value);
-    var tops_tot = parseFloat(form.elements['tops_tot'].value);
-    form.elements['total'].value = formatDecimal(sz_tot + tops_tot);
-    }
-    (function() {
-    var form = document.getElementById('pizzaForm');
-    var el = document.getElementById('pizza_toppings');
-    
-    // Determinar los ingredientes seleccionados en las casillas de verificación
-    
-    var tops = el.getElementsByTagName('input');
-    for (var i=0, len=tops.length; i<len; i++) {
-    if (tops[i].type === 'checkbox') {
-    tops[i].onclick = getToppingsTotal;
-    }
-    }
-    var sz = form.elements['size'];
-    for (var i=0, len=sz.length; i<len; i++) {
-    sz[i].onclick = getSizePrice;
-    }
-    
-    // set sz_tot to value of selected
-    
-    form.elements['sz_tot'].value = formatDecimal(parseFloat(getRadioVal(form, 'size')));
-    updatePizzaTotal(form);
-    })();
